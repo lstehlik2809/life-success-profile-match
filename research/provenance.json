@@ -1,0 +1,28 @@
+{
+  "retrieved": "2026-09-04",
+  "workbookURL": "https://osf.io/download/zj9n7/",
+  "workbookSHA256": "21eb477989341a17f3a06b7fe9ec8826e6e8a8fdadaa3953ef20ff789cb1c579",
+  "analysisURL": "https://files.osf.io/v1/resources/d5gqx/providers/github/R/run_cpa.R",
+  "sheets": [
+    "INTA",
+    "INDV",
+    "INTR",
+    "INDS"
+  ],
+  "column": "r (observed), not rho (corrected)",
+  "direction": "Analysis sheets already reverse negative criteria; no second reversal.",
+  "predictorMatrix": "Observed correlations from supplemental Table S7 at published two-decimal precision.",
+  "method": "Solve C beta_j = r_j. Level_j = mean(beta_j) sum(z). Pattern_j = centered(beta_j) dot z. Combined_j = beta_j dot z. Average criterion scores with equal weight within each final cluster/family.",
+  "clusterDefinition": "Published final 148 variables from Tables 9-11.",
+  "audit": {
+    "matchedVariables": 148,
+    "maximumCenteredBetaDifference": 0.009774162140509407,
+    "maximumMultipleRDifference": 0.006403538110816065
+  },
+  "limits": [
+    "Rounded predictor matrix and source precision make this an approximate reconstruction.",
+    "The equal-weight mean index is a defined app summary, not a separately fitted success scale.",
+    "No rescaling to the SD of a measured composite and no normative percentile conversion.",
+    "No external individual validation or calibrated success probabilities."
+  ]
+}
