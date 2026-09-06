@@ -1,6 +1,6 @@
-# Life success profile explorer — app2
+# Life success profile explorer
 
-Revised implementation of `app1`, addressing the findings in `../app1-review.md`. Includes elevation, shape similarity, and an approximate combined regression model. The original application is unchanged.
+An interactive explorer for comparing a Big Five personality profile with research-derived forms of life success. It includes elevation, shape similarity, and an approximate combined regression model.
 
 ## Run locally
 
@@ -58,7 +58,7 @@ Numerically flat profiles have undefined shape correlation. The shape view also 
 
 The what-if view evaluates every combination of decreased/unchanged/increased inputs at the selected ±1, ±5 or ±10 percentile-point step, using the **selected scoring mode**. Every scenario scores all clusters and families from the same input profile. Tail duplicates are removed. Flat/near-flat scenarios are excluded and counted only in shape mode; the linear modes include them. Ranges describe this finite grid, not exhaustive continuous bounds, confidence intervals, population frequencies or retest probabilities.
 
-The unsupported app1 aggregation, implied zero-order reconstruction, custom matrix editor, fixed reliability labels, and fixed retest percentages remain removed. No index is converted into a normative percentile or success probability.
+The app does not use an unsupported aggregation, implied zero-order reconstruction, custom matrix editor, fixed reliability labels, or fixed retest percentages. No index is converted into a normative percentile or success probability.
 
 ## Research data and provenance
 
@@ -74,7 +74,7 @@ These are redraws inspired by [Figure 6 (p. 801) and Tables 9–11](https://doi.
 
 ### Source data
 
-- `data.js` retains all **148 rows / 1,184 numerical entries** from the audited app1 transcription of Wilmot, Wiernik and Ones (2025), Tables 9–11. The prior review compared every numeric entry with the supplied PDF.
+- `data.js` contains all **148 rows / 1,184 numerical entries** from the audited transcription of Wilmot, Wiernik and Ones (2025), Tables 9–11. Every numeric entry was compared with the supplied PDF.
 - Cluster details explain that membership reflects similar Big Five prediction patterns, not just shared subject matter. Ingenuity is presented as a research theme, with a plain-language exemplar alongside its full source label, `Organizational citizenship behavior: Change`. Its 21 variables include that exemplar, interpersonal sensitivity and walking speed; these are not all direct measures of innovation. This clarification follows Table 10 (pp. 798–799) and the cluster discussion (p. 802), without changing membership or scoring.
 - The source's 21 reverse-keyed variables carry explicit direction-aware labels. Their numeric vectors were already reversed in the paper and are not reversed again.
 - `OBSERVED_S7` contains the observed Big Five intercorrelations from supplemental Table S7. The linear model uses this immutable matrix; pure shape similarity does **not** require it.
@@ -120,9 +120,9 @@ Sources:
 - `research-patterns.test.js`: all ten source mappings and literal exemplar oracles, centering, means, bounds, non-mutation, mode independence and tied interpretations.
 - `research-pattern-chart.test.js`: server-rendered chart structure, default selection, unique control names, accessible labels and research caveats using the existing Vite/React dependencies. Browser interaction and responsive/theme appearance still require runtime verification.
 
-The data-preservation test also checks the SHA-256 of the original app1 file. If that file is intentionally changed in the future, update the provenance test through an explicit review rather than automatically accepting the new source.
+The data-preservation tests verify the integrity of the audited source values and model structure. Update their provenance expectations only after an explicit source review.
 
-Verification on 4 September 2026: all 39 automated tests passed, and the production build succeeded. The offline source audit confirmed all 740 observed correlations match the pinned workbook. The added tests cover every covariance coordinate, sparse numeric/text profiles, missing-result suppression and recovery, typed solver inputs, and the existing numerical thresholds. See [the app2 quality review](../app2-review.md) for findings, browser evidence and verification limits.
+Verification on 4 September 2026: all automated tests passed, and the production build succeeded. The offline source audit confirmed all 740 observed correlations match the pinned workbook. The tests cover every covariance coordinate, sparse numeric/text profiles, missing-result suppression and recovery, typed solver inputs, and the existing numerical thresholds.
 
 Research-chart implementation checks on 4 September 2026: `npm test` passed all 53 reported tests (including the existing 40-test baseline and the new pure-data/server-render checks), and `npm run build` succeeded. These automated results do not establish browser keyboard interaction or responsive/theme appearance; those need separate runtime checks.
 
@@ -132,4 +132,4 @@ All user entries are held in this browser tab's memory. The app sends no questio
 
 The interface starts in light mode. The Light / Dark button in the header switches appearance without changing inputs, comparisons, or open research details. It is keyboard accessible and exposes its dark-mode state to assistive technology.
 
-Only the appearance preference is saved in local storage, under `life-success-profile-match-app2-theme`. Reloading keeps that preference while clearing profile and questionnaire entries. If browser storage is unavailable, the switch still works for the current session. No external fonts or visual asset services are used.
+Only the appearance preference is saved in local storage. Reloading keeps that preference while clearing profile and questionnaire entries. If browser storage is unavailable, the switch still works for the current session. No external fonts or visual asset services are used.
