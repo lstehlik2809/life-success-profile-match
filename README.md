@@ -2,7 +2,13 @@
 
 An interactive explorer for comparing a Big Five personality profile with research-derived forms of life success. It includes elevation, shape similarity, and an approximate combined regression model.
 
-## Run locally
+## Published app
+
+**[Open the Life success profile explorer](https://lstehlik2809.github.io/life-success-profile-match/)**
+
+The public app is deployed automatically from the `main` branch with GitHub Pages.
+
+## Local development
 
 Requires Node.js 20.19+ (20.x), or 22.12+. Dependencies are pinned in `package-lock.json`.
 
@@ -17,12 +23,6 @@ Open **http://127.0.0.1:5175**. The development server binds to the local loopba
 npm test
 npm run build
 ```
-
-## Published app
-
-The public app is deployed automatically from the `main` branch with GitHub Pages:
-
-**https://lstehlik2809.github.io/life-success-profile-match/**
 
 ## What this version computes
 
