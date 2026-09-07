@@ -110,7 +110,7 @@ test('R3: interpretations preserve exact ties and do not invent distinctions at 
   assert.equal(describeResearchPattern(getResearchPattern(9, 'exemplar').points), 'Most above the mean: Agreeableness and Extraversion (tied at +0.060). Most below the mean: Openness (−0.120).');
   assert.equal(describeResearchPattern(getResearchPattern(2, 'exemplar').points), 'Most above the mean: Emotional stability (+0.128). Most below the mean: Extraversion and Openness (tied at −0.072).');
   assert.equal(describeResearchPattern(getResearchPattern(7, 'exemplar').points), 'Most above the mean: Openness (+0.052). Most below the mean: Agreeableness (−0.108).');
-  assert.equal(describeResearchPattern(getResearchPattern(1).points.map(point => ({ ...point, value: 0 }))), 'All five traits have equal relative predictive emphasis.');
+  assert.equal(describeResearchPattern(getResearchPattern(1).points.map(point => ({ ...point, value: 0 }))), 'All five traits have equal relative regression weights.');
 });
 
 test('R2/R3: display weights use three decimals, explicit nonzero signs, and no negative zero', () => {

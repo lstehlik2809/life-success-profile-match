@@ -27,7 +27,7 @@ test('R2/R3: server-rendered research charts expose default views, unique native
         for (const trait of ['Emotional stability', 'Agreeableness', 'Conscientiousness', 'Extraversion', 'Openness']) assert.ok(markup.includes(trait));
         assert.match(markup, /<svg[^>]*role="img"[^>]*aria-labelledby="[^"]+"[^>]*aria-describedby="[^"]+"/);
         assert.match(markup, /<title id="[^"]+">[^<]+ — Cluster average<\/title>/);
-        assert.match(markup, /<desc id="[^"]+">[^<]+Relative predictive weights, β\*/);
+        assert.match(markup, /<desc id="[^"]+">[^<]+Relative regression weights, β\*/);
       }
       const ingenuity = render(7);
       for (const value of ['−0.027', '−0.084', '+0.019', '+0.016', '+0.077']) assert.ok(ingenuity.includes(value), value);
@@ -59,10 +59,11 @@ test('R2/R3: server-rendered research charts expose default views, unique native
       for (const text of [
         'not the Figure 6 exemplar or an exact reproduction of Figure 5',
         'β* = a regression coefficient minus the mean',
-        'These signs do not necessarily mean a positive or negative overall association',
+        'These signs do not imply causal effects',
+        'do not necessarily mean a positive or negative overall association',
         'fixed research pattern, not your profile',
         'required personal trait levels, or success probabilities',
-        'not elevation or your complete combined score',
+        'It describes shape, not elevation or your complete combined score',
         'does not change your scores',
         'small rounding residue is removed',
         'not imply greater source precision',

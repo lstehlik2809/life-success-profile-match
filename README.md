@@ -35,8 +35,8 @@ The app displays **descriptive elevation** as the mean of the five normal-score 
 Three comparison views are available:
 
 - **Shape similarity** (default): Pearson correlation across five trait coordinates against the published mean centered pattern. Range −1 to +1. Uniform shifts and positive rescaling of the profile leave this score unchanged.
-- **Elevation contribution:** the contribution of the common trait level to each research index, excluding the pattern contribution.
-- **Combined model:** the sum of elevation and the weighted linear pattern contribution. Both components remain visible in the result cards and criterion details. Unlike Pearson similarity, the pattern contribution retains the magnitude of trait differences.
+- **Elevation component:** the model component associated with the common trait level in each research index, excluding the pattern component.
+- **Combined model:** the sum of the elevation and weighted linear pattern components. Both components remain visible in the result cards and criterion details. Unlike Pearson similarity, the pattern component retains the magnitude of trait differences.
 
 For each criterion j, the combined model uses the observed predictor matrix C from supplemental Table S7 and the observed trait–criterion vector r_j from the authors' analysis workbook:
 
@@ -52,9 +52,9 @@ These are ordinary regression coefficients. The app does not average the publish
 
 Each type/family index is a defined **equal-weight mean of modeled standardized criteria**. A family averages all its member variables directly, not its differently sized types with equal weight. Index units are **mean criterion SD units**. An index of +0.200 is not +0.200 SD on a measured family scale, an outcome percentile, or a probability of success. The app does not standardize the composite because the required criterion intercorrelations are unavailable. Equal weighting is an explicit app choice, not evidence that the constituent criteria have equal personal value or form a validated success scale.
 
-The reconstruction is approximate because C is published at two-decimal precision. All 148 observed criterion vectors come from a pinned source workbook. Every reconstructed centered coefficient is within 0.010 of the published centered coefficients; every reconstructed multiple R is within 0.0065 of the printed R. These checks verify numerical correspondence, not personal predictive validity. Individual forecasts still require validation in an appropriate population.
+The reconstruction is approximate because C is published at two-decimal precision. All 148 observed criterion vectors come from a pinned source workbook. Every reconstructed centered coefficient is within 0.010 of the published centered coefficients; every reconstructed multiple R is within 0.0065 of the printed R. These checks verify numerical correspondence only. The app’s indices have not been externally validated for individuals and should not be interpreted as forecasts.
 
-Numerically flat profiles have undefined shape correlation. The shape view also pauses when effective percentiles span one point or less, an explicit product safeguard rather than a psychometric threshold. The linear views remain defined: an exactly flat profile has zero pattern contribution, while its elevation contribution may be nonzero. At all five 50th percentiles, every linear score is zero and all results share a tie. Equal displayed scores share positions and are listed alphabetically: two-decimal precision for similarity and three for indices.
+Numerically flat profiles have undefined shape correlation. The shape view also pauses when effective percentiles span one point or less, an explicit product safeguard rather than a psychometric threshold. The linear views remain defined: an exactly flat profile has a zero pattern component, while its elevation component may be nonzero. At all five 50th percentiles, every linear score is zero and all results share a tie. Equal displayed scores share positions and are listed alphabetically: two-decimal precision for similarity and three for indices.
 
 The what-if view evaluates every combination of decreased/unchanged/increased inputs at the selected ±1, ±5 or ±10 percentile-point step, using the **selected scoring mode**. Every scenario scores all clusters and families from the same input profile. Tail duplicates are removed. Flat/near-flat scenarios are excluded and counted only in shape mode; the linear modes include them. Ranges describe this finite grid, not exhaustive continuous bounds, confidence intervals, population frequencies or retest probabilities.
 
@@ -68,14 +68,14 @@ Each expanded form of success contains a five-trait line chart in all three scor
 
 The chart reads the published β* values from Tables 9–11, re-centered to remove small two-decimal rounding residues. All ten charts and both datasets use the same −0.250 to +0.250 vertical scale; signed values are displayed to three decimals to distinguish averages, without claiming extra source precision. For example, Ingenuity’s exemplar is `Organizational citizenship behavior: Change`: the printed vector [−0.01, −0.11, 0.03, 0.03, 0.05] becomes [−0.008, −0.108, 0.032, 0.032, 0.052].
 
-β* means a regression coefficient minus its variable’s mean coefficient across the five traits. Positive/negative deviations indicate more/less **relative predictive emphasis**, not necessarily a positive/negative overall association. The charts show fixed research patterns—not the user’s profile, required personal levels, success probabilities, elevation or the complete combined score. Switching datasets does not affect scoring. Generated interpretations preserve tied extrema. Charts include full trait labels, numeric text alternatives and a labeled zero baseline; narrow screens scroll the chart locally.
+β* means a regression coefficient minus its variable’s mean coefficient across the five traits. Positive and negative deviations indicate regression weights above or below that five-trait mean. Their signs do not imply causal effects and do not necessarily indicate a positive or negative overall association. The charts show fixed research patterns—not the user’s profile, required personal levels, success probabilities, elevation or the complete combined score. Switching datasets does not affect scoring. Generated interpretations preserve tied extrema. Charts include full trait labels, numeric text alternatives and a labeled zero baseline; narrow screens scroll the chart locally.
 
 These are redraws inspired by [Figure 6 (p. 801) and Tables 9–11](https://doi.org/10.1037/bul0000476), not exact recreations. Confidence/error bars are intentionally omitted because their numeric values are unavailable here. The app uses no new chart dependencies or external assets.
 
 ### Source data
 
 - `data.js` contains all **148 rows / 1,184 numerical entries** from the audited transcription of Wilmot, Wiernik and Ones (2025), Tables 9–11. Every numeric entry was compared with the supplied PDF.
-- Cluster details explain that membership reflects similar Big Five prediction patterns, not just shared subject matter. Ingenuity is presented as a research theme, with a plain-language exemplar alongside its full source label, `Organizational citizenship behavior: Change`. Its 21 variables include that exemplar, interpersonal sensitivity and walking speed; these are not all direct measures of innovation. This clarification follows Table 10 (pp. 798–799) and the cluster discussion (p. 802), without changing membership or scoring.
+- Cluster details explain that membership reflects similar Big Five regression-weight patterns, not just shared subject matter. Ingenuity is presented as a research theme, with a plain-language exemplar alongside its full source label, `Organizational citizenship behavior: Change`. Its 21 variables include that exemplar, interpersonal sensitivity and walking speed; these are not all direct measures of innovation. This clarification follows Table 10 (pp. 798–799) and the cluster discussion (p. 802), without changing membership or scoring.
 - The source's 21 reverse-keyed variables carry explicit direction-aware labels. Their numeric vectors were already reversed in the paper and are not reversed again.
 - `OBSERVED_S7` contains the observed Big Five intercorrelations from supplemental Table S7. The linear model uses this immutable matrix; pure shape similarity does **not** require it.
 - `regression-data.js` contains 148 observed criterion vectors (740 correlations) from the authors' analysis workbook, with explicit source-name mappings. The analysis sheets already reverse negative criteria; no further reversal is applied.
@@ -103,7 +103,7 @@ Sources:
 | Misinterpreted beta* | Correct centered-coefficient explanation and example |
 | Input coercion, N/ES and norms | String input validation, explicit reversal and visible tail handling |
 | Impossible custom matrices | Matrix editor removed; fixed source matrix checked for positive definiteness |
-| Flat-profile winner | Shape view pauses; linear views retain defined elevation contributions and group all equal displayed scores |
+| Flat-profile winner | Shape view pauses; linear views retain defined elevation components and group all equal displayed scores |
 | Additional explanatory errors | Research scope, coefficient precision, Figure 5 inconsistency and exclusion groups corrected |
 
 ## Files and checks

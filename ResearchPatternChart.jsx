@@ -33,8 +33,8 @@ export default function ResearchPatternChart({ clusterId }) {
       <div className="research-chart-scroll" tabIndex="0" role="region" aria-label={`${pattern.clusterName} research chart; scroll horizontally if needed`}>
         <svg viewBox="0 0 800 340" role="img" aria-labelledby={`${id}-title`} aria-describedby={`${id}-description`}>
           <title id={`${id}-title`}>{`${pattern.clusterName} — ${pattern.label}`}</title>
-          <desc id={`${id}-description`}>{caption}. Relative predictive weights, β*. {valuesText}. Zero is the mean coefficient, not zero overall association. The same −0.250 to +0.250 scale is used for every type and both views.</desc>
-          <text className="research-axis-title" x="64" y="24">Relative predictive weight (β*)</text>
+          <desc id={`${id}-description`}>{caption}. Relative regression weights, β*. {valuesText}. Zero is the mean coefficient, not zero overall association. The same −0.250 to +0.250 scale is used for every type and both views.</desc>
+          <text className="research-axis-title" x="64" y="24">Relative regression weight (β*)</text>
           {TICKS.map(value => <g key={value}>
             <line className={value === 0 ? 'research-zero-baseline' : 'research-grid-line'} x1="64" x2="770" y1={yPosition(value)} y2={yPosition(value)} />
             <text className="research-tick" x="53" y={yPosition(value) + 5} textAnchor="end">{formatPatternWeight(value)}</text>
@@ -53,8 +53,8 @@ export default function ResearchPatternChart({ clusterId }) {
       <p className="research-pattern-reading">{describeResearchPattern(pattern.points)}</p>
     </figure>
     <div className="research-pattern-notes">
-      <p><strong>How to read it:</strong> β* = a regression coefficient minus the mean of that variable’s five coefficients. Above zero means more relative predictive emphasis; below zero means less. These signs do not necessarily mean a positive or negative overall association.</p>
-      <p>This is a fixed research pattern, not your profile, required personal trait levels, or success probabilities. It explains shape, not elevation or your complete combined score. Changing this chart does not change your scores.</p>
+      <p><strong>How to read it:</strong> β* = a regression coefficient minus the mean of that variable’s five coefficients. Above zero means a regression weight above the variable’s five-trait mean; below zero means a weight below it. These signs do not imply causal effects and do not necessarily mean a positive or negative overall association.</p>
+      <p>This is a fixed research pattern, not your profile, required personal trait levels, or success probabilities. It describes shape, not elevation or your complete combined score. Changing this chart does not change your scores.</p>
       <p className="small">Redrawn from the <a href="https://doi.org/10.1037/bul0000476" target="_blank" rel="noreferrer">source paper, Figure 6 (p. 801) and Tables 9–11<span className="sr-only"> (opens in a new tab)</span></a>. Published β* values have two-decimal precision; the small rounding residue is removed by centering again. Three-decimal display helps distinguish averages, not imply greater source precision. All charts share the −0.250 to +0.250 scale. Confidence/error bars are omitted because their numeric values are unavailable here; this is not an exact recreation of the figure’s uncertainty.</p>
     </div>
   </section>;

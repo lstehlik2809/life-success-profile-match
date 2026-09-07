@@ -50,7 +50,7 @@ export const RESEARCH_FAMILIES = FAMILY_MODELS.map(attachCriteria);
 
 export const MODES = {
   shape: {name:'Shape similarity', precision:2, unit:'Correlation · −1 to +1', column:'Shape similarity'},
-  elevation: {name:'Elevation contribution', precision:3, unit:'Mean criterion SD units', column:'Elevation contribution'},
+  elevation: {name:'Elevation component', precision:3, unit:'Mean criterion SD units', column:'Elevation component'},
   combined: {name:'Combined model', precision:3, unit:'Mean criterion SD units', column:'Combined index'},
 };
 export function profileElevation(profile) { return profile.z ? mean(profile.z) : null; }

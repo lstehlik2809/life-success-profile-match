@@ -48,7 +48,7 @@ export function formatPatternWeight(value) {
 export function describeResearchPattern(points) {
   const max = Math.max(...points.map(point => point.value));
   const min = Math.min(...points.map(point => point.value));
-  if (max - min < 1e-10) return 'All five traits have equal relative predictive emphasis.';
+  if (max - min < 1e-10) return 'All five traits have equal relative regression weights.';
   const describe = value => {
     const names = points.filter(point => Math.abs(point.value - value) < 1e-10).map(point => point.name);
     const joined = names.length > 1 ? `${names.slice(0, -1).join(', ')} and ${names.at(-1)}` : names[0];
