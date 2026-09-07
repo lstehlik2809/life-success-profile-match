@@ -235,8 +235,6 @@ export default function App() {
   }, [theme]);
   const [fields, setFields] = useState(Array(5).fill(''));
   const [polarity, setPolarity] = useState('ES');
-  const [instrument, setInstrument] = useState('');
-  const [normGroup, setNormGroup] = useState('');
   const [touched, setTouched] = useState(Array(5).fill(false));
   const [example, setExample] = useState(false);
   const [tab, setTab] = useState('profile');
@@ -249,7 +247,7 @@ export default function App() {
   const changeField = (i, value) => { setFields(previous => previous.map((old, j) => i === j ? value : old)); setExample(false); };
   const changePolarity = (next) => { if (next !== polarity) { setFields(previous => [reverseField(previous[0]), ...previous.slice(1)]); setPolarity(next); } };
   const loadExample = () => { setFields(polarity === 'N' ? [reverseField(EXAMPLE[0]), ...EXAMPLE.slice(1)] : [...EXAMPLE]); setTouched(Array(5).fill(false)); setExample(true); };
-  const clear = () => { setFields(Array(5).fill('')); setTouched(Array(5).fill(false)); setInstrument(''); setNormGroup(''); setExample(false); };
+  const clear = () => { setFields(Array(5).fill('')); setTouched(Array(5).fill(false)); setExample(false); };
 
   return <div className="app-shell">
     <header className="site-header">
@@ -273,7 +271,7 @@ export default function App() {
           <p className="section-intro" id="percentile-help">Use the percentiles reported by one questionnaire: 80 means the 80th percentile in its reference group, not 80% of the available test points. Enter all five values from 0 to 100.</p>
           <fieldset className="polarity"><legend>My report uses</legend><label><input type="radio" name="polarity" value="ES" checked={polarity === 'ES'} onChange={() => changePolarity('ES')} /> Emotional stability</label><label><input type="radio" name="polarity" value="N" checked={polarity === 'N'} onChange={() => changePolarity('N')} /> Neuroticism</label></fieldset>
           <p className="small">These are opposite directions. Switching labels reverses the first percentile to preserve the same profile.</p>
-          {example && <p className="example-note" role="status">Example profile loaded. Replace these illustrative inputs with your own. Questionnaire details below are not used for this example.</p>}
+          {example && <p className="example-note" role="status">Example profile loaded. Replace these illustrative inputs with your own.</p>}
           <div className="input-grid">{fields.map((text, i) => {
             const parsed = parsePercentile(text);
             const showError = parsed.error && (touched[i] || text.length > 0);
@@ -285,8 +283,7 @@ export default function App() {
             </div>;
           })}</div>
           <p className="small" id="tail-help">For calculation, percentiles below 0.5 use 0.5 and those above 99.5 use 99.5. Your entered values remain unchanged. This is an explicit approximation for extreme scores.</p>
-          <details className="context-fields"><summary>Questionnaire and reference group <span>optional context</span></summary><div className="context-grid"><label>Questionnaire name<input type="text" value={instrument} onChange={event => setInstrument(event.target.value)} placeholder="e.g. the inventory named in your report" /></label><label>Reference population<input type="text" value={normGroup} onChange={event => setNormGroup(event.target.value)} placeholder="e.g. the age group, country or norm sample" /></label></div><p className="small">These fields document your source. They do not select instrument-specific scoring or reliability. When this context is unknown, comparability remains uncertain.</p></details>
-          <div className="input-status" role="status">{completed}/5 percentiles entered{!example && (instrument || normGroup) ? ` · Source: ${[instrument, normGroup].filter(Boolean).join(' / ')}` : ''}</div>
+          <div className="input-status" role="status">{completed}/5 percentiles entered</div>
           {profile.clipped?.length > 0 && <p className="notice" role="status">Tail convention applied to {profile.clipped.map(i => names[i]).join(', ')}. Your matches use the stated 0.5–99.5 calculation limits.</p>}
           <ProfileElevation profile={profile} />
           {profile.z && <ProfileShape profile={profile} />}

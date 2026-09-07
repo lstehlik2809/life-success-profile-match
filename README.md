@@ -26,7 +26,7 @@ npm run build
 
 ## What this version computes
 
-The user enters five Big Five **domain percentiles**. Emotional stability and neuroticism are explicitly supported as opposite directions. Blank, malformed and out-of-range values pause all results. Optional questionnaire and reference-population fields record context; they do not silently select inventory norms or reliability values.
+The user enters five Big Five **domain percentiles**. Emotional stability and neuroticism are explicitly supported as opposite directions. Blank, malformed and out-of-range values pause all results.
 
 Valid percentiles are converted to normal-score coordinates. Values outside 0.5–99.5 are limited to those boundaries **for calculation only**, while the original input remains visible and the affected traits are flagged. This transparent, symmetric tail convention avoids infinite quantiles and preserves monotonicity. It is an approximation, not an instrument norm.
 
@@ -101,7 +101,7 @@ Sources:
 | Unsupported expected outcomes | Criterion-specific ordinary regressions; explicit equal-weight index; no personal success standing or probability claims |
 | Invalid rank confidence | Joint deterministic input scenarios; no confidence cutoff, overlap test or retest percentages |
 | Misinterpreted beta* | Correct centered-coefficient explanation and example |
-| Input coercion, N/ES and norms | String input validation, explicit reversal, context fields and visible tail handling |
+| Input coercion, N/ES and norms | String input validation, explicit reversal and visible tail handling |
 | Impossible custom matrices | Matrix editor removed; fixed source matrix checked for positive definiteness |
 | Flat-profile winner | Shape view pauses; linear views retain defined elevation contributions and group all equal displayed scores |
 | Additional explanatory errors | Research scope, coefficient precision, Figure 5 inconsistency and exclusion groups corrected |
@@ -132,4 +132,4 @@ All user entries are held in this browser tab's memory. The app sends no questio
 
 The interface starts in light mode. The Light / Dark button in the header switches appearance without changing inputs, comparisons, or open research details. It is keyboard accessible and exposes its dark-mode state to assistive technology.
 
-Only the appearance preference is saved in local storage. Reloading keeps that preference while clearing profile and questionnaire entries. If browser storage is unavailable, the switch still works for the current session. No external fonts or visual asset services are used.
+Only the appearance preference is saved in local storage. Reloading keeps that preference while clearing profile entries. If browser storage is unavailable, the switch still works for the current session. No external fonts or visual asset services are used.
